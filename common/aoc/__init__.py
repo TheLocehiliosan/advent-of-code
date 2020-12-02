@@ -19,6 +19,15 @@ class Puzzle():
         """Puzzle input"""
         return self.puzzle.input_data
 
+    def report_stats(self):
+        """Report Stats"""
+        try:
+            print(f'YEAR:{self.year} DAY:{self.day}')
+            print(f'Part A: {self.puzzle.my_stats["a"]["time"]}')
+            print(f'Part B: {self.puzzle.my_stats["b"]["time"]}')
+        except aocd.exceptions.PuzzleUnsolvedError:
+            pass
+
     def report_answer(self, part, answer=None):
         """Report answer to AOC"""
         print(f'Answer {part.upper()}: {answer}')
