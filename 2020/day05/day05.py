@@ -10,9 +10,7 @@ PUZZLE = aoc.Puzzle(day=5, year=2020)
 
 def seat(code):
     """Convert to seat number"""
-    row = int(str(code[:7]).replace('F', '0').replace('B', '1'), 2)
-    col = int(str(code[7:]).replace('L', '0').replace('R', '1'), 2)
-    return row * 8 + col
+    return int(code.translate(str.maketrans("FLBR", "0011")), 2)
 
 
 def solve(part):
