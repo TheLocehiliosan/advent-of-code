@@ -43,20 +43,18 @@ def test_height(hgt):
     return False
 
 
-def solve(part):
+def solve():
     """Solve puzzle"""
-    valid = 0
+    valid_a, valid_b = 0, 0
     for passport in parse_passports():
         if all(req in passport.keys() for req in FIELDS):
-            if part == 'a':
-                valid += 1
-                continue
+            valid_a += 1
             tests = [test(passport[field]) for field, test in FIELDS.items()]
             if all(tests):
-                valid += 1
-    return valid
+                valid_b += 1
+    PUZZLE.report_a(valid_a)
+    PUZZLE.report_b(valid_b)
 
 
 if __name__ == "__main__":
-    PUZZLE.report_a(solve('a'))
-    PUZZLE.report_b(solve('b'))
+    solve()

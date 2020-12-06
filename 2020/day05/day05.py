@@ -13,17 +13,15 @@ def seat(code):
     return int(code.translate(str.maketrans("FLBR", "0011")), 2)
 
 
-def solve(part):
+def solve():
     """Solve puzzle"""
     seats = sorted(seat(_) for _ in PUZZLE.input.splitlines())
-    if part == 'a':
-        return seats[-1]
+    PUZZLE.report_a(seats[-1])
     for index, value in enumerate(range(seats[0], seats[-1])):
         if seats[index] != value:
-            return value
-    return None
+            PUZZLE.report_b(value)
+            break
 
 
 if __name__ == "__main__":
-    PUZZLE.report_a(solve('a'))
-    PUZZLE.report_b(solve('b'))
+    solve()
