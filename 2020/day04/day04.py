@@ -21,17 +21,12 @@ FIELDS = {
 
 def parse_passports():
     """Generate dictionary for every passport"""
-    record = ''
-    for line in PUZZLE.input.splitlines():
-        if line == '':
-            passport = {}
-            for text in record.split():
-                key, value = text.split(':')
-                passport[key] = value
-            yield passport
-            record = ''
-        else:
-            record = ' '.join([record, line])
+    for lines in PUZZLE.input.split('\n\n'):
+        passport = {}
+        for text in lines.split():
+            key, value = text.split(':')
+            passport[key] = value
+        yield passport
 
 
 def test_height(hgt):
