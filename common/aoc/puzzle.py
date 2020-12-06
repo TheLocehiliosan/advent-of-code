@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Puzzle related utilities/objects"""
 import argparse
+import time
 import aocd
 
 
@@ -9,6 +10,9 @@ class Puzzle():
     _args = None
 
     def __init__(self, day, year):
+        self.start = time.perf_counter()
+        self.end_a = None
+        self.end_b = None
         self.day = day
         self.year = year
         self.puzzle = aocd.models.Puzzle(day=day, year=year)
@@ -18,6 +22,11 @@ class Puzzle():
     def input(self):
         """Puzzle input"""
         return self.puzzle.input_data
+
+    @property
+    def timing(self):
+        """Timing report"""
+        return '{0:.2f} seconds'.format(self.end_b - self.start)
 
     def report_stats(self):
         """Report Stats"""
@@ -30,7 +39,16 @@ class Puzzle():
 
     def report_answer(self, part, answer=None):
         """Report answer to AOC"""
+        if part == 'a' and Puzzle._args.decorate:
+            self.end_a = time.perf_counter()
+            title = f'Day {self.day}: {self.puzzle.title}'
+            print(title)
+            print('-'*len(title))
         print(f'Answer {part.upper()}: {answer}')
+        if part == 'b' and Puzzle._args.decorate:
+            self.end_b = time.perf_counter()
+            print(self.timing)
+            print('')
         if answer is None:
             return
         if Puzzle._args.submit:
@@ -54,6 +72,11 @@ class Puzzle():
         if cls._args:
             return
         parser = argparse.ArgumentParser()
+        parser.add_argument(
+            "-d", "--decorate",
+            help="Decorate with a title and spacing",
+            action="store_true",
+            )
         parser.add_argument(
             "-s", "--submit",
             help="Submit answers to adventofcode.com",

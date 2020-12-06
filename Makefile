@@ -33,6 +33,9 @@ edit:
 	fi; \
 	vim "$$program"
 
+.PHONY: time
+time:
+	@time -p for pgm in $(ROOT_DIR)/$(YEAR)/day*/day*.py; do "$$pgm" -d; done
 
 .PHONY: template
 template:
