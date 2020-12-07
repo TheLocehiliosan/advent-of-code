@@ -25,7 +25,7 @@ usage:
 
 .PHONY: edit
 edit:
-	@program="$(ROOT_DIR)/$(YEAR)/day$(ZERODAY)/day$(ZERODAY).py"; \
+	@program="$(ROOT_DIR)/$(YEAR)/day$(ZERODAY).py"; \
 	if [ ! -f "$$program" ]; then \
 		mkdir -p "$${program%/*}"; \
 		$(MAKE) template > "$$program"; \
@@ -35,7 +35,7 @@ edit:
 
 .PHONY: time
 time:
-	@time -p for pgm in $(ROOT_DIR)/$(YEAR)/day*/day*.py; do "$$pgm" -d; done
+	@time -p for pgm in $(ROOT_DIR)/$(YEAR)/day*.py; do "$$pgm" -d; done
 
 .PHONY: template
 template:
