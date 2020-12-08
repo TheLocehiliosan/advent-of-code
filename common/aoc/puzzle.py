@@ -24,6 +24,12 @@ class Puzzle():
         return self.puzzle.input_data
 
     @property
+    def sample(self):
+        """Fetch some sample data, not the standard input"""
+        with open('day{0:02d}.sample'.format(self.day)) as data:
+            return data.read()
+
+    @property
     def timing(self):
         """Timing report"""
         return '{0:.2f} seconds'.format(self.end_b - self.start)
