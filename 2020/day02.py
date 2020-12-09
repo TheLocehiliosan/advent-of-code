@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
 """
 https://adventofcode.com/2020/day/2
 """
