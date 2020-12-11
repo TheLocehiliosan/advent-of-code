@@ -1,0 +1,6 @@
+[MASTER]
+ignore-patterns=template.py
+[SIMILARITIES]
+min-similarity-lines=5
+[BASIC]
+good-names-rgxs=^[xy]$

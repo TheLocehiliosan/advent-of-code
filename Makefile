@@ -19,8 +19,18 @@ usage:
 	@echo
 	@echo 'CREATING FILES'
 	@echo
-	@echo '  edit [DAY=<day>, YEAR=<year>]'
+	@echo '  make edit [DAY=<day>, YEAR=<year>]'
 	@echo '    - Create template if missing, and edit'
+	@echo
+	@echo 'TIMING'
+	@echo
+	@echo '  make time [YEAR=<year>]'
+	@echo '    - Time all puzzle for a year'
+	@echo
+	@echo 'LINTING'
+	@echo
+	@echo '  make lint'
+	@echo '    - Run linters'
 	@echo
 
 .PHONY: edit
@@ -32,6 +42,11 @@ edit:
 		chmod a+x "$$program"; \
 	fi; \
 	vim "$$program"
+
+.PHONY: lint
+lint: $(ROOT_DIR)/env
+	@flake8 common 20*
+	@pylint common 20*
 
 .PHONY: time
 time:
