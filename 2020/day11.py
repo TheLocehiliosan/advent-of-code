@@ -39,9 +39,8 @@ def show_seats(seats):
 def sit(seats, part='a'):
     """Sit down"""
     people = 4 if part == 'a' else 5
-    orig = seats.copy()
     new = collections.defaultdict(int)
-    for col, row in orig:
+    for col, row in list(seats):
         if part == 'a':
             spots = [
                     (col-1, row-1), (col, row-1), (col+1, row-1),
