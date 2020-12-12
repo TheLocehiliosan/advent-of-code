@@ -1,5 +1,6 @@
 [MASTER]
 ignore-patterns=template.py
+unsafe-load-any-extension=yes
 [SIMILARITIES]
 min-similarity-lines=5
 [BASIC]
