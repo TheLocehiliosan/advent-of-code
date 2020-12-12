@@ -26,7 +26,7 @@ class Puzzle():
     @property
     def sample(self):
         """Fetch some sample data, not the standard input"""
-        with open('day{0:02d}.sample'.format(self.day)) as data:
+        with open('sample') as data:
             return data.read()
 
     @property
