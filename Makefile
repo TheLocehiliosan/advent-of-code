@@ -50,7 +50,7 @@ lint: $(ROOT_DIR)/env
 
 .PHONY: time
 time:
-	@time -p for pgm in $(ROOT_DIR)/$(YEAR)/day*.py; do "$$pgm" -d; done
+	@time -p for pgm in $(ROOT_DIR)/$(YEAR)/day*.py; do [[ ! $$pgm =~ _ ]] && "$$pgm" -d; done
 
 .PHONY: template
 template:
