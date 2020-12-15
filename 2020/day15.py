@@ -7,22 +7,25 @@ import aoc
 PUZZLE = aoc.Puzzle(day=15, year=2020)
 
 
-def solve(target=2020):
+def solve():
     """Solve puzzle"""
+    goal_a, goal_b = 2020, 30000000
     start = list(map(int, PUZZLE.input.split(',')))
     seq, index = dict(), 0
     for idx, value in enumerate(start[:-1]):
         seq[value] = idx + 1
         index = idx + 1
     next_num = start[-1]
-    while index < target:
+    while index < goal_b:
         index += 1
         value = index - seq[next_num] if next_num in seq else 0
         seq[next_num] = index
+        if index == goal_a:
+            PUZZLE.report_a(next_num)
+        if index == goal_b:
+            PUZZLE.report_b(next_num)
         next_num = value
-    return next(key for (key, val) in seq.items() if val == index)
 
 
 if __name__ == "__main__":
-    PUZZLE.report_a(solve(2020))
-    PUZZLE.report_b(solve(30000000))
+    solve()
