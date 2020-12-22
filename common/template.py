@@ -9,10 +9,10 @@ PUZZLE = aoc.Puzzle(day=DAY, year=YEAR)
 
 def solve():
     """Solve puzzle"""
-    # print(PUZZLE.input)
-    return None
+    print(PUZZLE.input)
+    PUZZLE.report_a(None)
+    PUZZLE.report_b(None)
 
 
 if __name__ == "__main__":
-    PUZZLE.report_a(solve())
-    PUZZLE.report_b(solve())
+    solve()
