@@ -3,6 +3,7 @@
 import argparse
 import time
 import aocd
+import requests
 
 
 class Puzzle():
@@ -30,6 +31,14 @@ class Puzzle():
             return data.read()
 
     @property
+    def title(self):
+        """Puzzle title"""
+        try:
+            return self.puzzle.title
+        except requests.exceptions.HTTPError:
+            return 'UNKNOWN PUZZLE'
+
+    @property
     def timing(self):
         """Timing report"""
         return '{0:.2f} seconds'.format(self.end_b - self.start)
@@ -47,7 +56,7 @@ class Puzzle():
         """Report answer to AOC"""
         if part == 'a' and Puzzle._args.decorate:
             self.end_a = time.perf_counter()
-            title = f'Day {self.day}: {self.puzzle.title}'
+            title = f'Day {self.day}: {self.title}'
             print(title)
             print('-'*len(title))
         print(f'Answer {part.upper()}: {answer}')
